@@ -1,2 +1,2 @@
-init.el file for windows Emacs 24.5.1
-Qi - 2016
+init.el for WSL2
+Qi - 2020/11
