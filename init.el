@@ -78,25 +78,6 @@
 (require 'xt-mouse)
 (xterm-mouse-mode t)
 (mouse-wheel-mode t)
-;; (defun track-mouse (e))
-;; (setq mouse-wheel-follow-mouse 't)
-;; (defvar alternating-scroll-down-next t)
-;; (defvar alternating-scroll-up-next t)
-;; (defun alternating-scroll-down-line ()
-;;   (interactive "@")
-;;   (when alternating-scroll-down-next
-;; ;      (run-hook-with-args 'window-scroll-functions )
-;;     (scroll-down-line))
-;;   (setq alternating-scroll-down-next (not alternating-scroll-down-next)))
-;; (defun alternating-scroll-up-line ()
-;;   (interactive "@")
-;;   (when alternating-scroll-up-next
-;; ;      (run-hook-with-args 'window-scroll-functions)
-;;     (scroll-up-line))
-;; (setq alternating-scroll-up-next (not alternating-scroll-up-next)))
-;; (global-set-key (kbd "<mouse-4>") 'alternating-scroll-down-line)
-;; (global-set-key (kbd "<mouse-5>") 'alternating-scroll-up-line)
-;; ;; End of mouse and scroll mode
 
 ;Window move, Shift+Arrows
 (when (fboundp 'windmove-default-keybindings)
@@ -106,7 +87,6 @@
 ;; Ctrl-v to scroll half page
 (global-set-key [(control ?v)]
 		(lambda () (interactive (next-line (/ (window-height (selected-window)) 2)))))
-
 (global-set-key [(meta ?v)]
 		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
 
@@ -148,85 +128,76 @@
  (set-face-foreground 'font-lock-builtin-face "brown")
  ;; (set-face-foreground 'font-lock-function-name-face "magenta") ; func name
  (set-face-foreground 'font-lock-function-name-face "brown") ; func name
-
  ;;(set-face-foreground 'mode-line-inactive "white")
  (set-face-background 'mode-line-inactive "default")
  (set-face-foreground 'font-lock-type-face "cyan") ; &rset figure(matlab)
  ;; (set-face-attribute 'region nil :background "darkgray")
  )
-;; (add-to-list 'load-path "~/.emacs.d/alect-themes")
-(when-gui
- (load-theme 'alect-dark t)
- )
 
 ;;elpy
 (elpy-enable)
-(setq python-shell-interpreter "ipython"
+(setq python-shell-interpreter "ipython3"
     python-shell-interpreter-args "--simple-prompt -i")
-(setq elpy-rpc-python-command "C:/Users/Qi/AppData/Local/Programs/Python/Python37/python.exe")
-
-;; (pyvenv-workon "Emacs")
 (delete 'elpy-module-highlight-indentation elpy-modules) ; no highligh
 (eval-after-load "elpy"
   '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
 (setq elpy-rpc-virtualenv-path 'current)
 
-
 ;; hunspell setup for latex
 ;; https://www.reddit.com/r/emacs/comments/dgj0ae/tutorial_spellchecking_with_hunspell_170_for/
 ;; https://sourceforge.net/projects/ezwinports/files/hunspell-1.3.2-3-w32-bin.zip/download
-(setq ispell-program-name "hunspell")
-(setq ispell-hunspell-dict-paths-alist
-      '(("en_US" "C:/Users/Qi/Documents/emacs/hunspell/share/hunspell/en_US.aff")))
-(setq ispell-local-dictionary "en_US")
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
-(flyspell-mode 1)
-(global-set-key (kbd "M-\\") 'ispell-word)
-;; (dolist (hook '(text-mode-hook))
-;;   (add-hook hook (lambda () (flyspell-mode 1))))
-(add-hook 'text-mode-hook 'auto-complete-mode)
+;; (setq ispell-program-name "hunspell")
+;; (setq ispell-hunspell-dict-paths-alist
+;;       '(("en_US" "C:/Users/Qi/Documents/emacs/hunspell/share/hunspell/en_US.aff")))
+;; (setq ispell-local-dictionary "en_US")
+;; (setq ispell-local-dictionary-alist
+;;       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
+;; (flyspell-mode 1)
+;; (global-set-key (kbd "M-\\") 'ispell-word)
+;; ;; (dolist (hook '(text-mode-hook))
+;; ;;   (add-hook hook (lambda () (flyspell-mode 1))))
+;; (add-hook 'text-mode-hook 'auto-complete-mode)
 
-;; ;; flycheck for c++
-;; (require 'flycheck)
-;; (add-hook 'c++-mode-hook 'flycheck-mode)
-;; (add-hook 'c-mode-hook 'flycheck-mode)
+;; (defun cpp-compile ()
+;;   (local-set-key (kbd "C-c C-r") 'compile))
+;; (add-hook 'c++-mode-hook 'cpp-compile)
 
-;; (add-hook 'c++-mode-hook (lambda ()
-;;                            (flycheck-mode 1)
-;;                            (setq flycheck-checker 'c/c++-cppcheck)))
-;; ;; end of flycheck
+;; (add-to-list 'load-path "~/.emacs.d/elpa/cpplint")
 
-(defun cpp-compile ()
-  (local-set-key (kbd "C-c C-r") 'compile))
-(add-hook 'c++-mode-hook 'cpp-compile)
-
-(add-to-list 'load-path "c:/Users/Qi/AppData/Roaming/.emacs.d/elpa/cpplint")
-
-(flycheck-mode 1)
-(custom-set-variables
- '(flycheck-c/c++-googlelint-executable "C:/Users/Qi/AppData/Local/Programs/Python/Python37/Scripts/cpplint.exe"))
-(eval-after-load 'flycheck
-  '(progn
-     (require 'flycheck-google-cpplint)
-     (flycheck-add-next-checker 'c/c++-cppcheck
-                                'c/c++-googlelint 'append))) 
-(setq-default indent-tabs-mode nil)
-(setq-default c-basic-offset 2)
+;; (flycheck-mode 1)
+;; (custom-set-variables
+;;  '(flycheck-c/c++-googlelint-executable "C:/Users/Qi/AppData/Local/Programs/Python/Python37/Scripts/cpplint.exe"))
+;; (eval-after-load 'flycheck
+;;   '(progn
+;;      (require 'flycheck-google-cpplint)
+;;      (flycheck-add-next-checker 'c/c++-cppcheck
+;;                                 'c/c++-googlelint 'append))) 
+;; (setq-default indent-tabs-mode nil)
+;; (setq-default c-basic-offset 2)
 
 ;; copy emacs selection to Windows clipboard
+;; Could not use Consolas Font:
+;; https://github.com/microsoft/terminal/issues/367
+
 (when-term
- ;; (defun win-copy (start end)
- ;;   (interactive "r")
- ;;   (shell-command-on-region start end "clip.exe")
- ;;   )
- (defun win-copy (&optional b e)
+ ;; copy in wsl
+ (defun wsl-copy (&optional b e)
    (interactive "r")
    (call-process-region b e "clip.exe")
    (deactivate-mark nil)
    )
- (global-set-key (kbd "M-w") 'win-copy)
+ (global-set-key (kbd "M-w") 'wsl-copy)
+ ;; paste in wsl
+ (defun wsl-paste ()
+   (interactive)
+   (let ((coding-system-for-read 'dos)
+	 (default-directory "/mnt/c/"))
+     (insert (shell-command-to-string
+	      "powershell.exe -command 'Get-Clipboard'"))))
+ (global-set-key (kbd "C-y") 'wsl-paste)
  )
+
+
 (add-hook 'org-mode-hook 'auto-complete-mode)
 
 ;; yas-mode
@@ -235,12 +206,6 @@
 ;; install yasnippet-snippets at first!
 (require 'yasnippet)
 (add-hook 'c++-mode-hook #'yas-minor-mode)
-
-(defun bash ()
-  "Run cygwin bash in shell mode."
-  (interactive)
-  (let ((explicit-shell-file-name "C:/MinGW/msys/1.0/bin/bash.exe"))
-    (call-interactively 'shell)))
 
 ;; (setq explicit-shell-file-name "C:/MinGW/msys/1.0/bin/bash.exe")
 ;; (setq shell-file-name "bash")
@@ -288,3 +253,4 @@
 
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+

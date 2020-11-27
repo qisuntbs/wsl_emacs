@@ -1,20 +1,20 @@
 
 ;; ----- smex-history -----
 (
+ set-file-name-coding-system
+ run-python
+ package-autoremove
+ list-packages
  pwd
  cd
  indent-region
- flycheck-mode
- flyspell-buffer
- flyspell-mode
- load-file
 )
 
 ;; ----- smex-data -----
 (
  (pwd . 16)
  (run-dig . 2)
- (run-python . 40)
+ (run-python . 46)
  (cd . 35)
  (version . 2)
  (indent-region . 23)
@@ -28,7 +28,7 @@
  (cua-mode . 2)
  (temp-buffer-resize-mode . 2)
  (package-install . 4)
- (list-packages . 6)
+ (list-packages . 7)
  (make-frame-command . 1)
  (shrink-window . 3)
  (replace-string . 34)
@@ -50,7 +50,7 @@
  (company-mode . 3)
  (auto-complete-mode . 5)
  (prefer-coding-system . 1)
- (set-file-name-coding-system . 3)
+ (set-file-name-coding-system . 6)
  (shell . 10)
  (eshell . 5)
  (flycheck-mode . 4)
@@ -68,4 +68,5 @@
  (ac-isearch . 1)
  (flyspell-buffer . 1)
  (flyspell-word . 1)
+ (package-autoremove . 1)
 )
