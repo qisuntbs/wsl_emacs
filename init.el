@@ -1,4 +1,5 @@
-;; qi's .emacs file 2019-11-21
+;; qi's .emacs file 2020-11-28
+;; for WSL 2
 ;; list-colors-display
 ;; list-faces-display
 ;; win cmd - colors :
@@ -7,7 +8,7 @@
 ;; win cmd - options:
 ;;   Cursor Size - Large, uncheck
 ;;   Quick Edit Mode, Enable Ctrl key shortcuts
-;; (set-keyboard-coding-system nil) ;this is for iterm2 only
+
 (prefer-coding-system 'utf-8-unix)
 (setq inhibit-startup-message t) ;disable emacs welcome
 
@@ -32,13 +33,9 @@
 (setq-default indent-tabs-mode t)
 
 (setq scroll-conservatively 10000) ;smooth-scrolling
-;; copy paste with clipboard
-;; see detail: http://stackoverflow.com/questions/9985316/how-to-paste-to-emacs-from-clipboard
-
 (global-font-lock-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;;gui only:
 ;;Define a macro that alone codes working under gui only
 (defun is-in-gui()
   (display-graphic-p))
@@ -54,15 +51,17 @@
 ;file ends with ~: enable backup files.
 (setq make-backup-files t)
 ;; Enable versioning with default values (keep five last versions, I think!)
-;(setq version-control t)
+;; (setq version-control t)
 ;; Save all backup file in this directory.
 
-;; Disables
-;; menu bar etc.
+;; Disable menu bar etc.
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
+;; no sound
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 (setq default-major-mode 'text-mode)
 
@@ -90,22 +89,12 @@
 (global-set-key [(meta ?v)]
 		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
 
-;; no sound
-(setq visible-bell t)
-(setq ring-bell-function 'ignore)
-
 ;; bracket highlight
 (require 'paren)
 (show-paren-mode t)
 (setq show-paren-delay 0)
 ;; (set-face-foreground 'show-paren-match-face "red")
 ;; (set-face-background 'show-paren-mismatch-face "red") ;mismatch allert
-
-;; (defun my-show-paren-any (orig-fun)
-;;   (or (funcall orig-fun)
-;;       (if (looking-at "\\s)")
-;;           (save-excursion (forward-char 1) (funcall orig-fun)))))
-;; (add-function :around show-paren-data-function #'my-show-paren-any)
 
 (set-display-table-slot standard-display-table 'wrap ?\ ) ;remove line wrap
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -140,6 +129,15 @@
   '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-virtualenv-path 'current)
+;; Using 2 Spaces instead of 4 as indention:
+;; Not recommended by PEP
+;; (add-hook 'python-mode-hook
+;;       (lambda ()
+;;         (setq indent-tabs-mode nil)
+;;         (setq tab-width 2)
+;;         ;; (setq python-shift-right 2)
+;;         ;; (setq python-shift-left 2)
+;;         (setq python-indent 2)))
 
 ;; hunspell setup for latex
 ;; https://www.reddit.com/r/emacs/comments/dgj0ae/tutorial_spellchecking_with_hunspell_170_for/
@@ -183,12 +181,14 @@
    )
  (global-set-key (kbd "M-w") 'wsl-copy)
  ;; paste in wsl
+ ;; a BUG here: additional '\n' EOL
+ ;; caused by powershell Get-Clipboard:
  (defun wsl-paste ()
    (interactive)
    (let ((coding-system-for-read 'dos)
-	 (default-directory "/mnt/c/"))
+ 	 (default-directory "/mnt/c/"))
      (insert (shell-command-to-string
-	      "powershell.exe -command 'Get-Clipboard'"))))
+ 	      "powershell.exe -command 'Get-Clipboard'"))))
  (global-set-key (kbd "C-y") 'wsl-paste)
  ;; kill in wsl
  (defun wsl-kill (&optional b e)
@@ -197,7 +197,7 @@
    (delete-region b e)
    )
  (global-set-key (kbd "C-w") 'wsl-kill)
- )
+ ) ;; end of when-term
 
 (add-hook 'org-mode-hook 'auto-complete-mode)
 ;; yas-mode
@@ -207,16 +207,6 @@
 (require 'yasnippet)
 (add-hook 'c++-mode-hook #'yas-minor-mode)
 
-;; (setq explicit-shell-file-name "C:/MinGW/msys/1.0/bin/bash.exe")
-;; (setq shell-file-name "bash")
-;; (setq explicit-bash.exe-args '("--noediting" "--login" "-i"))
-;; (setenv "SHELL" shell-file-name)
-;; (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
-
-;; no *Message* buffer
-;; (setq-default message-log-max nil)
-;; (kill-buffer "*Messages*")
-
 ;; switch buffer by skipping certain buffers
 ;; https://emacs.stackexchange.com/questions/17687/make-previous-buffer-and-next-buffer-to-ignore-some-buffers
 (defcustom my-skippable-buffers '("*Messages*"
@@ -225,7 +215,8 @@
 				  "*compilation*"
 				  "*Completions*"
 				  "*Disabled Command*"
-				  "*Flymake log*")
+				  "*Flymake log*"
+				  "*Shell Command Output*")
   "Buffer names ignored by `my-next-buffer' and `my-previous-buffer'."
   :type '(repeat string))
 
@@ -250,13 +241,11 @@
   "Variant of `previous-buffer' that skips `my-skippable-buffers'."
   (interactive)
   (my-change-buffer 'previous-buffer))
-
+;; RE-binding keys:
 (global-set-key [f1] 'my-previous-buffer)
 (global-set-key [f2] 'my-next-buffer)
-
 (global-set-key (kbd "<f3>") 'compile)
 (global-set-key (kbd "<f5>") 'save-buffer)
-
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
 

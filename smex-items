@@ -20,7 +20,7 @@
  (indent-region . 23)
  (balance-windows . 1)
  (list-coding-systems . 2)
- (load-file . 23)
+ (load-file . 26)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)
