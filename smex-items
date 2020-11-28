@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ load-file
  set-file-name-coding-system
  run-python
  package-autoremove
  list-packages
  pwd
  cd
- indent-region
 )
 
 ;; ----- smex-data -----
@@ -20,7 +20,7 @@
  (indent-region . 23)
  (balance-windows . 1)
  (list-coding-systems . 2)
- (load-file . 17)
+ (load-file . 20)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)

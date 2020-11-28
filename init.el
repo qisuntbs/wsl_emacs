@@ -119,20 +119,17 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
  
 (when-term
-;; (set-face-foreground 'font-lock-string-face "white")
  (set-face-foreground 'font-lock-comment-face "green") ; comment
- (set-face-foreground 'font-lock-keyword-face "magenta") ; function, if, end, etc.
- (set-face-foreground 'font-lock-variable-name-face "lightred") ; i, j, etc.
+ (set-face-foreground 'font-lock-keyword-face "brightblue") ; function, if, end, etc.
+ (set-face-foreground 'font-lock-variable-name-face "yellow") ; i, j, etc.
  (set-face-foreground 'font-lock-constant-face "brown") ; numbers, etc
  (set-face-foreground 'font-lock-string-face "default") ; string
- (set-face-foreground 'font-lock-builtin-face "brown")
- ;; (set-face-foreground 'font-lock-function-name-face "magenta") ; func name
- (set-face-foreground 'font-lock-function-name-face "brown") ; func name
- ;;(set-face-foreground 'mode-line-inactive "white")
- (set-face-background 'mode-line-inactive "default")
- (set-face-foreground 'font-lock-type-face "cyan") ; &rset figure(matlab)
- ;; (set-face-attribute 'region nil :background "darkgray")
- )
+ (set-face-foreground 'font-lock-builtin-face "brightred")  ; sum, len, round
+ (set-face-foreground 'font-lock-function-name-face "brightred") ; func name
+ (set-face-foreground 'mode-line-inactive "color-241")
+ (set-face-foreground 'font-lock-type-face "cyan")
+ (set-face-attribute 'region nil :background "#44475A")
+)
 
 ;;elpy
 (elpy-enable)
@@ -197,9 +194,7 @@
  (global-set-key (kbd "C-y") 'wsl-paste)
  )
 
-
 (add-hook 'org-mode-hook 'auto-complete-mode)
-
 ;; yas-mode
 ;; (add-to-list 'load-path
 ;;              "~/.emacs.d/elpa/yasnippet-0.14.0")
