@@ -122,7 +122,7 @@
  (set-face-foreground 'font-lock-comment-face "green") ; comment
  (set-face-foreground 'font-lock-keyword-face "brightblue") ; function, if, end, etc.
  (set-face-foreground 'font-lock-variable-name-face "yellow") ; i, j, etc.
- (set-face-foreground 'font-lock-constant-face "brown") ; numbers, etc
+ (set-face-foreground 'font-lock-constant-face "color-133") ; numbers, etc
  (set-face-foreground 'font-lock-string-face "default") ; string
  (set-face-foreground 'font-lock-builtin-face "brightred")  ; sum, len, round
  (set-face-foreground 'font-lock-function-name-face "brightred") ; func name
@@ -138,6 +138,7 @@
 (delete 'elpy-module-highlight-indentation elpy-modules) ; no highligh
 (eval-after-load "elpy"
   '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
+(setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-virtualenv-path 'current)
 
 ;; hunspell setup for latex
@@ -173,9 +174,6 @@
 ;; (setq-default c-basic-offset 2)
 
 ;; copy emacs selection to Windows clipboard
-;; Could not use Consolas Font:
-;; https://github.com/microsoft/terminal/issues/367
-
 (when-term
  ;; copy in wsl
  (defun wsl-copy (&optional b e)
@@ -192,6 +190,13 @@
      (insert (shell-command-to-string
 	      "powershell.exe -command 'Get-Clipboard'"))))
  (global-set-key (kbd "C-y") 'wsl-paste)
+ ;; kill in wsl
+ (defun wsl-kill (&optional b e)
+   (interactive "r")
+   (shell-command-on-region b e "clip.exe")
+   (delete-region b e)
+   )
+ (global-set-key (kbd "C-w") 'wsl-kill)
  )
 
 (add-hook 'org-mode-hook 'auto-complete-mode)
@@ -214,7 +219,13 @@
 
 ;; switch buffer by skipping certain buffers
 ;; https://emacs.stackexchange.com/questions/17687/make-previous-buffer-and-next-buffer-to-ignore-some-buffers
-(defcustom my-skippable-buffers '("*Messages*" "*scratch*" "*Help*" "*compilation*" "*Completions*")
+(defcustom my-skippable-buffers '("*Messages*"
+				  "*scratch*"
+				  "*Help*"
+				  "*compilation*"
+				  "*Completions*"
+				  "*Disabled Command*"
+				  "*Flymake log*")
   "Buffer names ignored by `my-next-buffer' and `my-previous-buffer'."
   :type '(repeat string))
 

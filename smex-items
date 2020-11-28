@@ -1,26 +1,26 @@
 
 ;; ----- smex-history -----
 (
+ load-file
+ elpy-config
+ flymake-mode
  run-python
  list-faces-display
  set-file-name-coding-system
- load-file
- package-autoremove
- list-packages
- pwd
+ ispell
 )
 
 ;; ----- smex-data -----
 (
  (pwd . 16)
  (run-dig . 2)
- (run-python . 47)
+ (run-python . 48)
  (cd . 35)
  (version . 2)
  (indent-region . 23)
  (balance-windows . 1)
  (list-coding-systems . 2)
- (load-file . 21)
+ (load-file . 23)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)
@@ -39,7 +39,7 @@
  (toggle-word-wrap . 2)
  (org-refile . 1)
  (org-reveal . 2)
- (flymake-mode . 1)
+ (flymake-mode . 2)
  (flyspell-mode . 10)
  (ispell . 69)
  (ispell-minor-mode . 3)
@@ -70,4 +70,6 @@
  (flyspell-word . 1)
  (package-autoremove . 1)
  (list-faces-display . 1)
+ (elpy-config . 5)
+ (flymake-start . 1)
 )
