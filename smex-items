@@ -1,26 +1,26 @@
 
 ;; ----- smex-history -----
 (
- load-file
- set-file-name-coding-system
  run-python
+ list-faces-display
+ set-file-name-coding-system
+ load-file
  package-autoremove
  list-packages
  pwd
- cd
 )
 
 ;; ----- smex-data -----
 (
  (pwd . 16)
  (run-dig . 2)
- (run-python . 46)
+ (run-python . 47)
  (cd . 35)
  (version . 2)
  (indent-region . 23)
  (balance-windows . 1)
  (list-coding-systems . 2)
- (load-file . 20)
+ (load-file . 21)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)
@@ -50,7 +50,7 @@
  (company-mode . 3)
  (auto-complete-mode . 5)
  (prefer-coding-system . 1)
- (set-file-name-coding-system . 6)
+ (set-file-name-coding-system . 7)
  (shell . 10)
  (eshell . 5)
  (flycheck-mode . 4)
@@ -69,4 +69,5 @@
  (flyspell-buffer . 1)
  (flyspell-word . 1)
  (package-autoremove . 1)
+ (list-faces-display . 1)
 )
