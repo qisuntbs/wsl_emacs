@@ -29,8 +29,8 @@
 (ac-linum-workaround)
 
 ;indent settings
-(setq standard-indent 2) ;indent as 2
-(setq-default indent-tabs-mode t)
+(setq standard-indent 2)
+(setq-default indent-tabs-mode t)  ;; elpy indention of 2 if set to nil
 
 (setq scroll-conservatively 10000) ;smooth-scrolling
 (global-font-lock-mode t)
@@ -129,15 +129,6 @@
   '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-virtualenv-path 'current)
-;; Using 2 Spaces instead of 4 as indention:
-;; Not recommended by PEP
-;; (add-hook 'python-mode-hook
-;;       (lambda ()
-;;         (setq indent-tabs-mode nil)
-;;         (setq tab-width 2)
-;;         ;; (setq python-shift-right 2)
-;;         ;; (setq python-shift-left 2)
-;;         (setq python-indent 2)))
 
 ;; hunspell setup for latex
 ;; https://www.reddit.com/r/emacs/comments/dgj0ae/tutorial_spellchecking_with_hunspell_170_for/
