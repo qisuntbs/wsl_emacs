@@ -117,7 +117,9 @@
  (set-face-foreground 'font-lock-function-name-face "brightred") ; func name
  (set-face-foreground 'mode-line-inactive "color-241")
  (set-face-foreground 'font-lock-type-face "cyan")
- (set-face-attribute 'region nil :background "#44475A")
+ (set-face-foreground 'minibuffer-prompt "brightblue")  ; M-x, load-file, etc.
+ ;; (set-face-attribute 'region nil :background "#44475")
+ (set-face-attribute 'region nil :background "color-240")  ; bg color of selection
 )
 
 ;;elpy
@@ -171,16 +173,6 @@
    (deactivate-mark nil)
    )
  (global-set-key (kbd "M-w") 'wsl-copy)
- ;; paste in wsl
- ;; a BUG here: additional '\n' EOL
- ;; caused by powershell Get-Clipboard:
- (defun wsl-paste ()
-   (interactive)
-   (let ((coding-system-for-read 'dos)
- 	 (default-directory "/mnt/c/"))
-     (insert (shell-command-to-string
- 	      "powershell.exe -command 'Get-Clipboard'"))))
- (global-set-key (kbd "C-y") 'wsl-paste)
  ;; kill in wsl
  (defun wsl-kill (&optional b e)
    (interactive "r")
@@ -188,6 +180,22 @@
    (delete-region b e)
    )
  (global-set-key (kbd "C-w") 'wsl-kill)
+
+ ;; paste-wsl
+ ;; https://www.emacswiki.org/emacs/Emacs_and_the_Windows_Subsystem_for_Linux
+ (defun wsl-clipboard-to-string ()
+   "Return Windows clipboard as string."
+   (let ((coding-system-for-read 'dos))
+     (substring				; remove added trailing \n
+      (shell-command-to-string
+       "powershell.exe -Command Get-Clipboard") 0 -1)))
+ (defun wsl-paste-from-clipboard (arg)
+   "Insert Windows clipboard at point. With prefix ARG, also add to kill-ring"
+   (interactive "P")
+   (let ((clip (wsl-clipboard-to-string)))
+     (insert clip)
+     (if arg (kill-new clip))))
+ (global-set-key (kbd "C-y") 'wsl-paste-from-clipboard)
  ) ;; end of when-term
 
 (add-hook 'org-mode-hook 'auto-complete-mode)
