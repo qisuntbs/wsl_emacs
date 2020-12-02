@@ -110,9 +110,9 @@
 (when-term
  (set-face-foreground 'font-lock-comment-face "green") ; comment
  (set-face-foreground 'font-lock-keyword-face "brightblue") ; function, if, end, etc.
- (set-face-foreground 'font-lock-variable-name-face "yellow") ; i, j, etc.
+ (set-face-foreground 'font-lock-variable-name-face "default") ; i, j, etc.
  (set-face-foreground 'font-lock-constant-face "color-133") ; numbers, etc
- (set-face-foreground 'font-lock-string-face "default") ; string
+ (set-face-foreground 'font-lock-string-face "yellow") ; string
  (set-face-foreground 'font-lock-builtin-face "brightred")  ; sum, len, round
  (set-face-foreground 'font-lock-function-name-face "brightred") ; func name
  (set-face-foreground 'mode-line-inactive "color-241")
