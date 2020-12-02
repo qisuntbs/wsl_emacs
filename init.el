@@ -181,6 +181,16 @@
    )
  (global-set-key (kbd "C-w") 'wsl-kill)
 
+ ;; kill-line in wsl
+ (defun wsl-linekill ()
+   (interactive)
+   (wsl-kill
+    (point)
+    (save-excursion (move-end-of-line 1) (point)))
+   (delete-char 1)
+   )
+ (global-set-key (kbd "C-k") 'wsl-linekill)
+
  ;; paste-wsl
  ;; https://www.emacswiki.org/emacs/Emacs_and_the_Windows_Subsystem_for_Linux
  (defun wsl-clipboard-to-string ()
