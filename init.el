@@ -90,11 +90,12 @@
 		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
 
 ;; bracket highlight
-(require 'paren)
-(show-paren-mode t)
-(setq show-paren-delay 0)
-;; (set-face-foreground 'show-paren-match-face "red")
-;; (set-face-background 'show-paren-mismatch-face "red") ;mismatch allert
+;; (require 'paren)
+;; (show-paren-mode t)
+;; (setq show-paren-delay 0)
+(require 'highlight-parentheses)
+(add-hook 'python-mode-hook 'highlight-parentheses-mode)
+(add-hook 'c++-mode-hook 'highlight-parentheses-mode)
 
 (set-display-table-slot standard-display-table 'wrap ?\ ) ;remove line wrap
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -120,6 +121,7 @@
  (set-face-foreground 'minibuffer-prompt "brightblue")  ; M-x, load-file, etc.
  ;; (set-face-attribute 'region nil :background "#44475")
  (set-face-attribute 'region nil :background "color-240")  ; bg color of selection
+ (set-face-background 'show-paren-match "cyan")
 )
 
 ;;elpy
@@ -131,38 +133,6 @@
   '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-virtualenv-path 'current)
-
-;; hunspell setup for latex
-;; https://www.reddit.com/r/emacs/comments/dgj0ae/tutorial_spellchecking_with_hunspell_170_for/
-;; https://sourceforge.net/projects/ezwinports/files/hunspell-1.3.2-3-w32-bin.zip/download
-;; (setq ispell-program-name "hunspell")
-;; (setq ispell-hunspell-dict-paths-alist
-;;       '(("en_US" "C:/Users/Qi/Documents/emacs/hunspell/share/hunspell/en_US.aff")))
-;; (setq ispell-local-dictionary "en_US")
-;; (setq ispell-local-dictionary-alist
-;;       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
-;; (flyspell-mode 1)
-;; (global-set-key (kbd "M-\\") 'ispell-word)
-;; ;; (dolist (hook '(text-mode-hook))
-;; ;;   (add-hook hook (lambda () (flyspell-mode 1))))
-;; (add-hook 'text-mode-hook 'auto-complete-mode)
-
-;; (defun cpp-compile ()
-;;   (local-set-key (kbd "C-c C-r") 'compile))
-;; (add-hook 'c++-mode-hook 'cpp-compile)
-
-;; (add-to-list 'load-path "~/.emacs.d/elpa/cpplint")
-
-;; (flycheck-mode 1)
-;; (custom-set-variables
-;;  '(flycheck-c/c++-googlelint-executable "C:/Users/Qi/AppData/Local/Programs/Python/Python37/Scripts/cpplint.exe"))
-;; (eval-after-load 'flycheck
-;;   '(progn
-;;      (require 'flycheck-google-cpplint)
-;;      (flycheck-add-next-checker 'c/c++-cppcheck
-;;                                 'c/c++-googlelint 'append))) 
-;; (setq-default indent-tabs-mode nil)
-;; (setq-default c-basic-offset 2)
 
 ;; copy emacs selection to Windows clipboard
 (when-term
@@ -257,4 +227,17 @@
 (global-set-key (kbd "<f5>") 'save-buffer)
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (highlight-parentheses yasnippet-snippets xclip smex multi-term math-symbol-lists flycheck elpy cython-mode color-theme auto-complete alect-themes))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

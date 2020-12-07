@@ -1,26 +1,26 @@
 
 ;; ----- smex-history -----
 (
- indent-region
  pwd
- replace-string
- list-faces-display
  load-file
+ highlight-parentheses-mode
+ list-packages
  list-colors-display
- elpy-config
+ run-python
+ replace-string
 )
 
 ;; ----- smex-data -----
 (
- (pwd . 22)
+ (pwd . 24)
  (run-dig . 2)
- (run-python . 48)
+ (run-python . 74)
  (cd . 35)
  (version . 2)
- (indent-region . 24)
- (balance-windows . 1)
+ (indent-region . 28)
+ (balance-windows . 2)
  (list-coding-systems . 2)
- (load-file . 28)
+ (load-file . 32)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)
@@ -28,10 +28,10 @@
  (cua-mode . 2)
  (temp-buffer-resize-mode . 2)
  (package-install . 4)
- (list-packages . 7)
+ (list-packages . 9)
  (make-frame-command . 1)
  (shrink-window . 3)
- (replace-string . 36)
+ (replace-string . 38)
  (uncomment-region . 4)
  (elpy-mode . 3)
  (toggle-truncate-lines . 1)
@@ -59,7 +59,7 @@
  (yas-expand . 7)
  (yank . 1)
  (ansi-term . 4)
- (list-colors-display . 3)
+ (list-colors-display . 7)
  (bash . 20)
  (Buffer-menu-sort . 2)
  (ibuffer . 1)
@@ -72,4 +72,7 @@
  (list-faces-display . 4)
  (elpy-config . 5)
  (flymake-start . 1)
+ (recover-file . 1)
+ (turn-on-cwarn-mode . 1)
+ (highlight-parentheses-mode . 1)
 )
