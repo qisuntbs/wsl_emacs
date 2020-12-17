@@ -1,26 +1,26 @@
 
 ;; ----- smex-history -----
 (
- pwd
- load-file
- highlight-parentheses-mode
- list-packages
- list-colors-display
+ indent-region
  run-python
- replace-string
+ load-file
+ xterm-mouse-mode
+ emacs-version
+ copy-region-as-kill
+ set-buffer-file-coding-system
 )
 
 ;; ----- smex-data -----
 (
- (pwd . 24)
+ (pwd . 27)
  (run-dig . 2)
- (run-python . 74)
+ (run-python . 95)
  (cd . 35)
  (version . 2)
- (indent-region . 28)
- (balance-windows . 2)
+ (indent-region . 30)
+ (balance-windows . 3)
  (list-coding-systems . 2)
- (load-file . 32)
+ (load-file . 37)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)
@@ -59,7 +59,7 @@
  (yas-expand . 7)
  (yank . 1)
  (ansi-term . 4)
- (list-colors-display . 7)
+ (list-colors-display . 8)
  (bash . 20)
  (Buffer-menu-sort . 2)
  (ibuffer . 1)
@@ -71,8 +71,13 @@
  (package-autoremove . 1)
  (list-faces-display . 4)
  (elpy-config . 5)
- (flymake-start . 1)
+ (flymake-start . 2)
  (recover-file . 1)
  (turn-on-cwarn-mode . 1)
  (highlight-parentheses-mode . 1)
+ (flymake-goto-next-error . 8)
+ (set-buffer-file-coding-system . 1)
+ (copy-region-as-kill . 1)
+ (emacs-version . 1)
+ (xterm-mouse-mode . 2)
 )

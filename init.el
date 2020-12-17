@@ -1,5 +1,5 @@
-;; qi's .emacs file 2020-11-28
-;; for WSL 2
+;; qi's .emacs file 2016/03
+;; supporting emacs-nox
 ;; list-colors-display
 ;; list-faces-display
 ;; win cmd - colors :
@@ -56,9 +56,24 @@
 
 ;; Disable menu bar etc.
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(blink-cursor-mode -1)
+;; (tool-bar-mode -1)
+;; (scroll-bar-mode -1)
+;; (blink-cursor-mode -1)
+;; Enable mouse support
+;; replaces forward-sentence
+
+;; Scrolling behavior for emacs-nox
+(defun nox-scroll-down ()
+  (interactive)
+  (scroll-up 5))
+(defun nox-scroll-up ()
+  (interactive)
+  (scroll-down 5))
+(unless window-system
+  (global-set-key (kbd "<mouse-4>") 'nox-scroll-up)
+  (global-set-key (kbd "<mouse-5>") 'nox-scroll-down)
+)
+
 ;; no sound
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
@@ -75,8 +90,8 @@
 (setq diff-switches "-u")
 ;; (require 'un-define)
 (require 'xt-mouse)
-(xterm-mouse-mode t)
-(mouse-wheel-mode t)
+(xterm-mouse-mode 1)
+;; (mouse-wheel-mode t)
 
 ;Window move, Shift+Arrows
 (when (fboundp 'windmove-default-keybindings)
@@ -90,9 +105,6 @@
 		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
 
 ;; bracket highlight
-;; (require 'paren)
-;; (show-paren-mode t)
-;; (setq show-paren-delay 0)
 (require 'highlight-parentheses)
 (add-hook 'python-mode-hook 'highlight-parentheses-mode)
 (add-hook 'c++-mode-hook 'highlight-parentheses-mode)
@@ -195,7 +207,8 @@
 				  "*Completions*"
 				  "*Disabled Command*"
 				  "*Flymake log*"
-				  "*Shell Command Output*")
+				  "*Shell Command Output*"
+				  "*Python*")
   "Buffer names ignored by `my-next-buffer' and `my-previous-buffer'."
   :type '(repeat string))
 
