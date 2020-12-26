@@ -49,12 +49,20 @@
   `(when (is-in-terminal) ,@body))
 
 ;file ends with ~: enable backup files.
-(setq make-backup-files t)
-;; Enable versioning with default values (keep five last versions, I think!)
+(setq backup-directory-alist `(("." . "~/.emacs.d/auto-save-list")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+;; (setq make-backup-files t)
+
+;; Enable versioning with default values (keeping the last five?)
 ;; (setq version-control t)
 ;; Save all backup file in this directory.
 
 ;; Disable menu bar etc.
+;; EDITED (emacs-nox)
 (menu-bar-mode -1)
 ;; (tool-bar-mode -1)
 ;; (scroll-bar-mode -1)
@@ -80,7 +88,6 @@
 
 (setq default-major-mode 'text-mode)
 
-;;; Mouse and scroll modes
 ;; enable visual feedback on selections
 (setq transient-mark-mode t)
 ;; default to better frame titles
@@ -88,16 +95,14 @@
       (concat  "%b - emacs@" (system-name)))
 ;; default to unified diffs
 (setq diff-switches "-u")
-;; (require 'un-define)
 (require 'xt-mouse)
 (xterm-mouse-mode 1)
 ;; (mouse-wheel-mode t)
 
-;Window move, Shift+Arrows
+;; Window move, Shift+Arrows
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; scroll half screen
 ;; Ctrl-v to scroll half page
 (global-set-key [(control ?v)]
 		(lambda () (interactive (next-line (/ (window-height (selected-window)) 2)))))
@@ -105,9 +110,15 @@
 		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
 
 ;; bracket highlight
-(require 'highlight-parentheses)
-(add-hook 'python-mode-hook 'highlight-parentheses-mode)
-(add-hook 'c++-mode-hook 'highlight-parentheses-mode)
+(require 'paren)
+(show-paren-mode t)
+(setq show-paren-delay 0)
+(set-face-background 'show-paren-match (face-background 'default))
+(set-face-foreground 'show-paren-match "red")
+;; ALTERNATIVE CHOICE:
+;; (require 'highlight-parentheses)
+;; (add-hook 'python-mode-hook 'highlight-parentheses-mode)
+;; (add-hook 'c++-mode-hook 'highlight-parentheses-mode)
 
 (set-display-table-slot standard-display-table 'wrap ?\ ) ;remove line wrap
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -119,7 +130,7 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
- 
+
 (when-term
  (set-face-foreground 'font-lock-comment-face "green") ; comment
  (set-face-foreground 'font-lock-keyword-face "brightblue") ; function, if, end, etc.
@@ -133,7 +144,6 @@
  (set-face-foreground 'minibuffer-prompt "brightblue")  ; M-x, load-file, etc.
  ;; (set-face-attribute 'region nil :background "#44475")
  (set-face-attribute 'region nil :background "color-240")  ; bg color of selection
- (set-face-background 'show-paren-match "cyan")
 )
 
 ;;elpy
@@ -191,10 +201,6 @@
  ) ;; end of when-term
 
 (add-hook 'org-mode-hook 'auto-complete-mode)
-;; yas-mode
-;; (add-to-list 'load-path
-;;              "~/.emacs.d/elpa/yasnippet-0.14.0")
-;; install yasnippet-snippets at first!
 (require 'yasnippet)
 (add-hook 'c++-mode-hook #'yas-minor-mode)
 
@@ -240,3 +246,5 @@
 (global-set-key (kbd "<f5>") 'save-buffer)
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+
+(setq mode-require-final-newline nil)  ;; no additional line EOF

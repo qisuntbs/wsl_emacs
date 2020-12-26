@@ -1,26 +1,26 @@
 
 ;; ----- smex-history -----
 (
- indent-region
- run-python
- load-file
- xterm-mouse-mode
- emacs-version
- copy-region-as-kill
- set-buffer-file-coding-system
+ pwd
+ upcase-dwim
+ replace-string
+ compile
+ c++-mode
+ makefile-mode
+ cd
 )
 
 ;; ----- smex-data -----
 (
- (pwd . 27)
+ (pwd . 28)
  (run-dig . 2)
  (run-python . 95)
- (cd . 35)
+ (cd . 36)
  (version . 2)
  (indent-region . 30)
- (balance-windows . 3)
+ (balance-windows . 5)
  (list-coding-systems . 2)
- (load-file . 37)
+ (load-file . 46)
  (xclip-mode . 4)
  (comment-region . 26)
  (copy-to-clipboard . 4)
@@ -31,7 +31,7 @@
  (list-packages . 9)
  (make-frame-command . 1)
  (shrink-window . 3)
- (replace-string . 38)
+ (replace-string . 42)
  (uncomment-region . 4)
  (elpy-mode . 3)
  (toggle-truncate-lines . 1)
@@ -43,7 +43,7 @@
  (flyspell-mode . 10)
  (ispell . 69)
  (ispell-minor-mode . 3)
- (compile . 1)
+ (compile . 26)
  (replace-regexp . 6)
  (checkdoc . 1)
  (auto-complete . 10)
@@ -59,7 +59,7 @@
  (yas-expand . 7)
  (yank . 1)
  (ansi-term . 4)
- (list-colors-display . 8)
+ (list-colors-display . 10)
  (bash . 20)
  (Buffer-menu-sort . 2)
  (ibuffer . 1)
@@ -69,7 +69,7 @@
  (flyspell-buffer . 1)
  (flyspell-word . 1)
  (package-autoremove . 1)
- (list-faces-display . 4)
+ (list-faces-display . 5)
  (elpy-config . 5)
  (flymake-start . 2)
  (recover-file . 1)
@@ -80,4 +80,8 @@
  (copy-region-as-kill . 1)
  (emacs-version . 1)
  (xterm-mouse-mode . 2)
+ (my-previous-buffer . 7)
+ (makefile-mode . 2)
+ (c++-mode . 2)
+ (upcase-dwim . 1)
 )
