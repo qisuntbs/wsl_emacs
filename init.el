@@ -248,3 +248,7 @@
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
 
 (setq mode-require-final-newline nil)  ;; no additional line EOF
+
+;; Enable Evil
+(require 'evil)
+(evil-mode 1)

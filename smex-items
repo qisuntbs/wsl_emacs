@@ -1,37 +1,37 @@
 
 ;; ----- smex-history -----
 (
- pwd
- upcase-dwim
- replace-string
+ list-packages
+ indent-region
+ load-file
  compile
- c++-mode
- makefile-mode
- cd
+ show-paren-mode
+ set-file-name-coding-system
+ run-python
 )
 
 ;; ----- smex-data -----
 (
- (pwd . 28)
+ (pwd . 29)
  (run-dig . 2)
- (run-python . 95)
+ (run-python . 96)
  (cd . 36)
  (version . 2)
- (indent-region . 30)
+ (indent-region . 42)
  (balance-windows . 5)
  (list-coding-systems . 2)
- (load-file . 46)
+ (load-file . 47)
  (xclip-mode . 4)
- (comment-region . 26)
+ (comment-region . 27)
  (copy-to-clipboard . 4)
  (paste-from-clipboard . 3)
  (cua-mode . 2)
  (temp-buffer-resize-mode . 2)
  (package-install . 4)
- (list-packages . 9)
+ (list-packages . 16)
  (make-frame-command . 1)
  (shrink-window . 3)
- (replace-string . 42)
+ (replace-string . 44)
  (uncomment-region . 4)
  (elpy-mode . 3)
  (toggle-truncate-lines . 1)
@@ -43,14 +43,14 @@
  (flyspell-mode . 10)
  (ispell . 69)
  (ispell-minor-mode . 3)
- (compile . 26)
+ (compile . 113)
  (replace-regexp . 6)
  (checkdoc . 1)
  (auto-complete . 10)
  (company-mode . 3)
  (auto-complete-mode . 5)
  (prefer-coding-system . 1)
- (set-file-name-coding-system . 7)
+ (set-file-name-coding-system . 9)
  (shell . 10)
  (eshell . 5)
  (flycheck-mode . 4)
@@ -84,4 +84,7 @@
  (makefile-mode . 2)
  (c++-mode . 2)
  (upcase-dwim . 1)
+ (delete-trailing-whitespace . 1)
+ (show-paren-mode . 2)
+ (evil-mode . 1)
 )
