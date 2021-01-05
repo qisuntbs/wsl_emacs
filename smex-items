@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ evil-beginning-of-line
+ beginning-of-line
+ end-of-line
  list-packages
  indent-region
  load-file
  compile
- show-paren-mode
- set-file-name-coding-system
- run-python
 )
 
 ;; ----- smex-data -----
@@ -87,4 +87,7 @@
  (delete-trailing-whitespace . 1)
  (show-paren-mode . 2)
  (evil-mode . 1)
+ (end-of-line . 1)
+ (beginning-of-line . 1)
+ (evil-beginning-of-line . 1)
 )

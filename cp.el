@@ -130,3 +130,13 @@
 ;; Enable Evil
 (require 'evil)
 (evil-mode 1)
+(define-key evil-normal-state-map "\C-e" 'evil-end-of-line)
+(define-key evil-insert-state-map "\C-e" 'end-of-line)
+(define-key evil-visual-state-map "\C-e" 'evil-end-of-line)
+(define-key evil-motion-state-map "\C-e" 'evil-end-of-line)
+(define-key evil-normal-state-map "\C-a" 'evil-beginning-of-line)
+(define-key evil-insert-state-map "\C-a" 'beginning-of-line)
+(define-key evil-visual-state-map "\C-a" 'evil-beginning-of-line)
+(define-key evil-motion-state-map "\C-a" 'evil-beginning-of-line)
+(define-key evil-visual-state-map "\C-u" 'evil-scroll-up)
+(define-key evil-motion-state-map "\C-d" 'evil-scroll-down)
