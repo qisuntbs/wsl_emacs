@@ -1,12 +1,12 @@
 
 ;; ----- smex-history -----
 (
- evil-beginning-of-line
- beginning-of-line
- end-of-line
- list-packages
- indent-region
+ jdb
+ set-buffer-file-coding-system
+ set-file-name-coding-system
+ run-python
  load-file
+ beginning-of-line
  compile
 )
 
@@ -14,13 +14,13 @@
 (
  (pwd . 29)
  (run-dig . 2)
- (run-python . 96)
+ (run-python . 98)
  (cd . 36)
  (version . 2)
  (indent-region . 42)
  (balance-windows . 5)
  (list-coding-systems . 2)
- (load-file . 47)
+ (load-file . 48)
  (xclip-mode . 4)
  (comment-region . 27)
  (copy-to-clipboard . 4)
@@ -50,7 +50,7 @@
  (company-mode . 3)
  (auto-complete-mode . 5)
  (prefer-coding-system . 1)
- (set-file-name-coding-system . 9)
+ (set-file-name-coding-system . 11)
  (shell . 10)
  (eshell . 5)
  (flycheck-mode . 4)
@@ -76,7 +76,7 @@
  (turn-on-cwarn-mode . 1)
  (highlight-parentheses-mode . 1)
  (flymake-goto-next-error . 8)
- (set-buffer-file-coding-system . 1)
+ (set-buffer-file-coding-system . 2)
  (copy-region-as-kill . 1)
  (emacs-version . 1)
  (xterm-mouse-mode . 2)
@@ -90,4 +90,7 @@
  (end-of-line . 1)
  (beginning-of-line . 1)
  (evil-beginning-of-line . 1)
+ (evil-change-whole-line . 1)
+ (jdb . 1)
+ (evil-force-normal-state . 2)
 )

@@ -140,3 +140,9 @@
 (define-key evil-motion-state-map "\C-a" 'evil-beginning-of-line)
 (define-key evil-visual-state-map "\C-u" 'evil-scroll-up)
 (define-key evil-motion-state-map "\C-d" 'evil-scroll-down)
+(define-key evil-insert-state-map "\C-c" 'evil-force-normal-state)
+(define-key evil-visual-state-map "\C-c" 'evil-force-normal-state)
+
+;; python
+(setq python-shell-interpreter "ipython3"
+    python-shell-interpreter-args "--simple-prompt -i")

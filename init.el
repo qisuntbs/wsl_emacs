@@ -104,10 +104,10 @@
   (windmove-default-keybindings))
 
 ;; Ctrl-v to scroll half page
-(global-set-key [(control ?v)]
-		(lambda () (interactive (next-line (/ (window-height (selected-window)) 2)))))
-(global-set-key [(meta ?v)]
-		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
+;; (global-set-key [(control ?v)]
+;; 		(lambda () (interactive (next-line (/ (window-height (selected-window)) 2)))))
+;; (global-set-key [(meta ?v)]
+;; 		(lambda () (interactive (previous-line (/ (window-height (selected-window)) 2)))))
 
 ;; bracket highlight
 (require 'paren)
@@ -146,15 +146,15 @@
  (set-face-attribute 'region nil :background "color-240")  ; bg color of selection
 )
 
-;;elpy
-(elpy-enable)
+;; elpy
+;; (elpy-enable)
 (setq python-shell-interpreter "ipython3"
     python-shell-interpreter-args "--simple-prompt -i")
-(delete 'elpy-module-highlight-indentation elpy-modules) ; no highligh
-(eval-after-load "elpy"
-  '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
-(setq elpy-rpc-python-command "python3")
-(setq elpy-rpc-virtualenv-path 'current)
+;; (delete 'elpy-module-highlight-indentation elpy-modules) ; no highligh
+;; (eval-after-load "elpy"
+;;   '(define-key elpy-mode-map (kbd "C-c C-r") 'python-shell-send-region))
+;; (setq elpy-rpc-python-command "python3")
+;; (setq elpy-rpc-virtualenv-path 'current)
 
 ;; copy emacs selection to Windows clipboard
 (when-term
@@ -262,3 +262,5 @@
 (define-key evil-motion-state-map "\C-a" 'evil-beginning-of-line)
 (define-key evil-visual-state-map "\C-u" 'evil-scroll-up)
 (define-key evil-motion-state-map "\C-d" 'evil-scroll-down)
+(define-key evil-insert-state-map "\C-c" 'evil-force-normal-state)
+(define-key evil-visual-state-map "\C-c" 'evil-force-normal-state)
